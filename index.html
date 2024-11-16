@@ -3,13 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Price Tracker for monitoring price changes of products.">
+    <meta name="author" content="Your Name">
     <title>Price Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .product-list {
+            margin: 20px 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .product-list li {
+            background: #eee;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Price Tracker Dashboard</h1>
-    <ul>
-        <li><a href="graph.html" target="_blank">View Graph</a></li>
-        <li><a href="legend.html" target="_blank">View Legend</a></li>
-    </ul>
+    <header>
+        <h1>Price Tracker</h1>
+        <p>Monitor and analyze product price changes over time.</p>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <h2>Tracked Products</h2>
+        <ul class="product-list">
+            <li>
+                <strong>Product Name:</strong> Example Product 1<br>
+                <strong>Start Price:</strong> $10.00<br>
+                <strong>Current Price:</strong> $12.50<br>
+                <strong>Percent Change:</strong> 25%<br>
+                <strong>Price Difference:</strong> $2.50
+            </li>
+            <li>
+                <strong>Product Name:</strong> Example Product 2<br>
+                <strong>Start Price:</strong> $15.00<br>
+                <strong>Current Price:</strong> $14.00<br>
+                <strong>Percent Change:</strong> -6.67%<br>
+                <strong>Price Difference:</strong> -$1.00
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <p>&copy; 2024 Price Tracker. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
