@@ -28,6 +28,35 @@
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px 30px;
+            position: relative;
+        }
+
+        /* Pop-up bubble styling */
+        .popup-bubble {
+            position: absolute;
+            top: -50px; /* Adjust the vertical position */
+            right: 15px; /* Adjust the horizontal position */
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            animation: fadeIn 1.5s ease-in-out;
+            z-index: 10;
+            border: 1px solid #ccc;
+        }
+
+        /* Animation for the pop-up bubble */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Header styles */
@@ -92,6 +121,11 @@
 </head>
 <body>
     <div class="container">
+        <!-- Pop-up bubble -->
+        <div class="popup-bubble">
+            <strong>Note:</strong> We do not have any party affiliation.
+        </div>
+        
         <img src="https://img.icons8.com/color/96/price-tag.png" alt="Price Tag Icon" class="icon">
         <h1>Track Sam's Club Prices Throughout the Next 4 Years During the New President's Term</h1>
         <p>
