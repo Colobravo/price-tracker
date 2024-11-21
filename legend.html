@@ -5,13 +5,42 @@
     <title>Product Legend</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        table { width: 100%; border-collapse: collapse; }
+        select { margin: 10px 0; padding: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f4f4f4; }
     </style>
+    <script>
+        function filterByCategory() {
+            const category = document.getElementById("categoryFilter").value;
+            const rows = document.querySelectorAll("tbody tr");
+            const rowsArray = Array.from(rows);
+
+            rowsArray.forEach(row => {
+                if (category === "All" || row.dataset.category === category) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            // Sort rows by percent change when "All" is selected
+            if (category === "All") {
+                rowsArray.sort((a, b) => parseFloat(b.dataset.percentChange) - parseFloat(a.dataset.percentChange));
+                const tbody = document.querySelector("tbody");
+                tbody.innerHTML = ""; // Clear current rows
+                rowsArray.forEach(row => tbody.appendChild(row)); // Re-append sorted rows
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Product Details</h1>
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter" onchange="filterByCategory()">
+        <option value="All">All</option>
+<option value="Dairy, Eggs, & Cheese">Dairy, Eggs, & Cheese</option><option value="Condiments & Sauces">Condiments & Sauces</option><option value="Powdered & Liquid Drink Mixes">Powdered & Liquid Drink Mixes</option><option value="Cereal & Breakfast Foods">Cereal & Breakfast Foods</option><option value="Frozen Breakfast Foods">Frozen Breakfast Foods</option><option value="Frozen Meat, Poultry & Seafood">Frozen Meat, Poultry & Seafood</option><option value="Lunch Meat">Lunch Meat</option><option value="Hot Dogs & Franks">Hot Dogs & Franks</option><option value="Soda">Soda</option><option value="Paper Towels">Paper Towels</option><option value="Trash Bags">Trash Bags</option><option value="Uncategorized">Uncategorized</option><option value="Facial Tissue">Facial Tissue</option><option value="Canned Foods & Goods">Canned Foods & Goods</option><option value="Laundry Detergent">Laundry Detergent</option><option value="Dish Detergent">Dish Detergent</option><option value="Bread & Bakery">Bread & Bakery</option><option value="Cookies">Cookies</option><option value="Snack Cakes">Snack Cakes</option><option value="Meat, Poultry & Seafood">Meat, Poultry & Seafood</option><option value="Case Sales Meat">Case Sales Meat</option><option value="Frozen Entrees">Frozen Entrees</option><option value="Frozen Appetizers & Snacks">Frozen Appetizers & Snacks</option>
+    </select>
     <table>
         <thead>
             <tr>
@@ -20,832 +49,963 @@
                 <th>Current Price (Date)</th>
                 <th>Percent Change</th>
                 <th>$ Change</th>
+                <th>Category</th>
             </tr>
         </thead>
         <tbody>
 
-        <tr>
-            <td>Member's Mark Vitamin D Whole Milk 1 gal.</td>
-            <td>$3.92 (2024-11-08)</td>
-            <td>$4.02 (2024-11-19)</td>
-            <td>2.55%</td>
-            <td>$0.10</td>
-        </tr>
-    
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="14.559386973180091">
             <td>Member's Mark Cage Free Grade A Large White Eggs, 2 dozen</td>
             <td>$5.22 (2024-11-08)</td>
-            <td>$5.52 (2024-11-19)</td>
-            <td>5.75%</td>
-            <td>$0.30</td>
+            <td>$5.98 (2024-11-21)</td>
+            <td>14.56%</td>
+            <td>$0.76</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="3.5714285714285685">
             <td>Member's Mark Brown Organic Cage Free Eggs, 24 ct.</td>
             <td>$7.28 (2024-11-08)</td>
-            <td>$7.28 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
+            <td>$7.54 (2024-11-21)</td>
+            <td>3.57%</td>
+            <td>$0.26</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Member's Mark Mexican Style Finely Shredded Cheese 2 pk.</td>
-            <td>$7.68 (2024-11-08)</td>
-            <td>$7.68 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="2.5510204081632564">
+            <td>Member's Mark Vitamin D Whole Milk 1 gal.</td>
+            <td>$3.92 (2024-11-08)</td>
+            <td>$4.02 (2024-11-21)</td>
+            <td>2.55%</td>
+            <td>$0.10</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Heinz Original Tomato Ketchup Bottles, 44 oz., 3 pk.</td>
-            <td>$10.98 (2024-11-08)</td>
-            <td>$10.98 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="1.867219917012445">
+            <td>Member's Mark Lactose Free 2% Reduced Fat Milk, 64 fl. oz., 3 pk.</td>
+            <td>$9.64 (2024-11-15)</td>
+            <td>$9.82 (2024-11-21)</td>
+            <td>1.87%</td>
+            <td>$0.18</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Hellmann's Real Mayonnaise 25 oz., 3 pk.</td>
-            <td>$14.88 (2024-11-08)</td>
-            <td>$14.88 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.5524861878453043">
+            <td>Member's Mark Salted Sweet Cream Butter 4 lbs.</td>
+            <td>$14.48 (2024-11-15)</td>
+            <td>$14.56 (2024-11-21)</td>
+            <td>0.55%</td>
+            <td>$0.08</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Member's Mark French Vanilla Cappuccino Beverage Mix, 48 oz.</td>
-            <td>$10.98 (2024-11-08)</td>
-            <td>$10.98 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
-        </tr>
-    
-        <tr>
-            <td>Cinnamon Toast Crunch Cereal, 49.5 oz.</td>
-            <td>$7.98 (2024-11-08)</td>
-            <td>$7.98 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
-        </tr>
-    
-        <tr>
-            <td>Frosted Flakes Breakfast Cereal, 55 oz.</td>
-            <td>$7.88 (2024-11-08)</td>
-            <td>$7.88 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
-        </tr>
-    
-        <tr>
+        <tr data-category="Frozen Breakfast Foods" data-percent-change="0.10449320794148158">
             <td>Kellogg's Eggo Homestyle Waffles, Frozen 60 ct.</td>
             <td>$9.57 (2024-11-08)</td>
-            <td>$9.58 (2024-11-19)</td>
+            <td>$9.58 (2024-11-21)</td>
             <td>0.10%</td>
             <td>$0.01</td>
+            <td>Frozen Breakfast Foods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
+            <td>Member's Mark Mexican Style Finely Shredded Cheese 2 pk.</td>
+            <td>$7.68 (2024-11-08)</td>
+            <td>$7.68 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
+        </tr>
+    
+        <tr data-category="Condiments & Sauces" data-percent-change="0.0">
+            <td>Heinz Original Tomato Ketchup Bottles, 44 oz., 3 pk.</td>
+            <td>$10.98 (2024-11-08)</td>
+            <td>$10.98 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Condiments & Sauces</td>
+        </tr>
+    
+        <tr data-category="Condiments & Sauces" data-percent-change="0.0">
+            <td>Hellmann's Real Mayonnaise 25 oz., 3 pk.</td>
+            <td>$14.88 (2024-11-08)</td>
+            <td>$14.88 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Condiments & Sauces</td>
+        </tr>
+    
+        <tr data-category="Powdered & Liquid Drink Mixes" data-percent-change="0.0">
+            <td>Member's Mark French Vanilla Cappuccino Beverage Mix, 48 oz.</td>
+            <td>$10.98 (2024-11-08)</td>
+            <td>$10.98 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Powdered & Liquid Drink Mixes</td>
+        </tr>
+    
+        <tr data-category="Cereal & Breakfast Foods" data-percent-change="0.0">
+            <td>Cinnamon Toast Crunch Cereal, 49.5 oz.</td>
+            <td>$7.98 (2024-11-08)</td>
+            <td>$7.98 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Cereal & Breakfast Foods</td>
+        </tr>
+    
+        <tr data-category="Cereal & Breakfast Foods" data-percent-change="0.0">
+            <td>Frosted Flakes Breakfast Cereal, 55 oz.</td>
+            <td>$7.88 (2024-11-08)</td>
+            <td>$7.88 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Cereal & Breakfast Foods</td>
+        </tr>
+    
+        <tr data-category="Frozen Breakfast Foods" data-percent-change="0.0">
             <td>Jimmy Dean Sausage, Egg, and Cheese Croissant Sandwiches, Frozen, 12ct.</td>
             <td>$13.98 (2024-11-08)</td>
-            <td>$13.98 (2024-11-19)</td>
+            <td>$13.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Breakfast Foods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Breakfast Foods" data-percent-change="0.0">
             <td>Member's Mark Cinnamon French Toast Sticks, Frozen, 48 oz.</td>
             <td>$8.48 (2024-11-08)</td>
-            <td>$8.48 (2024-11-19)</td>
+            <td>$8.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Breakfast Foods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Breakfast Foods" data-percent-change="0.0">
             <td>Jimmy Dean Original Pancake and Sausage on a Stick, Frozen, 20 ct.</td>
             <td>$12.18 (2024-11-08)</td>
-            <td>$12.18 (2024-11-19)</td>
+            <td>$12.18 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Breakfast Foods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Tyson White Meat Chicken Nuggets, Frozen, 5 lbs.</td>
             <td>$13.98 (2024-11-08)</td>
-            <td>$13.98 (2024-11-19)</td>
+            <td>$13.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Lunch Meat" data-percent-change="0.0">
             <td>Member's Mark Uncured Black Forest Ham, Sliced, 1 lb. 6 oz.</td>
             <td>$6.98 (2024-11-08)</td>
-            <td>$6.98 (2024-11-19)</td>
+            <td>$6.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Lunch Meat</td>
         </tr>
     
-        <tr>
+        <tr data-category="Hot Dogs & Franks" data-percent-change="0.0">
             <td>Ball Park Classic Original Length Hot Dogs, 24 ct.</td>
             <td>$6.98 (2024-11-08)</td>
-            <td>$6.98 (2024-11-19)</td>
+            <td>$6.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Hot Dogs & Franks</td>
         </tr>
     
-        <tr>
+        <tr data-category="Lunch Meat" data-percent-change="0.0">
             <td>Member's Mark Uncured Hard Salami, Sliced 1 lb. 6 oz.</td>
             <td>$7.97 (2024-11-08)</td>
-            <td>$7.97 (2024-11-19)</td>
+            <td>$7.97 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Lunch Meat</td>
         </tr>
     
-        <tr>
+        <tr data-category="Soda" data-percent-change="0.0">
             <td>Coca-Cola Soft Drink 12 fl. oz., 35 pk.</td>
             <td>$16.88 (2024-11-08)</td>
-            <td>$16.88 (2024-11-19)</td>
+            <td>$16.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Soda</td>
         </tr>
     
-        <tr>
+        <tr data-category="Soda" data-percent-change="0.0">
             <td>Mountain Dew Soda 16.9 fl. oz., 24 pk.</td>
             <td>$14.48 (2024-11-08)</td>
-            <td>$14.48 (2024-11-19)</td>
+            <td>$14.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Soda</td>
         </tr>
     
-        <tr>
+        <tr data-category="Soda" data-percent-change="0.0">
             <td>Dr Pepper Soda 12 fl. oz. cans, 36 pk.</td>
             <td>$16.48 (2024-11-08)</td>
-            <td>$16.48 (2024-11-19)</td>
+            <td>$16.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Soda</td>
         </tr>
     
-        <tr>
+        <tr data-category="Paper Towels" data-percent-change="0.0">
             <td>Member's Mark Select & Tear 2-Ply Paper Towel 15 rolls, 150 sheets/roll</td>
             <td>$19.98 (2024-11-14)</td>
-            <td>$19.98 (2024-11-19)</td>
+            <td>$19.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Paper Towels</td>
         </tr>
     
-        <tr>
+        <tr data-category="Trash Bags" data-percent-change="0.0">
             <td>Member's Mark Power Flex Tall Kitchen Drawstring Trash Bags Unscented 13 gal., 200 ct.</td>
             <td>$16.98 (2024-11-14)</td>
-            <td>$16.98 (2024-11-19)</td>
+            <td>$16.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Trash Bags</td>
         </tr>
     
-        <tr>
+        <tr data-category="Uncategorized" data-percent-change="0.0">
             <td>Member's Mark Multipurpose Ultra Absorbent Training Pads, 23" x 24", 120 ct.</td>
             <td>$17.68 (2024-11-14)</td>
             <td>$17.68 (2024-11-19)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Uncategorized</td>
         </tr>
     
-        <tr>
+        <tr data-category="Facial Tissue" data-percent-change="0.0">
             <td>Member's Mark Ultra Soft 3-Ply Facial Tissues, 12 Cube Boxes, 80 tissues/box</td>
             <td>$13.98 (2024-11-14)</td>
-            <td>$13.98 (2024-11-19)</td>
+            <td>$13.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Facial Tissue</td>
         </tr>
     
-        <tr>
+        <tr data-category="Condiments & Sauces" data-percent-change="0.0">
             <td>Member's Mark Organic 100% Pure Maple Syrup, 32 oz.</td>
             <td>$11.98 (2024-11-14)</td>
-            <td>$11.98 (2024-11-19)</td>
+            <td>$11.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Condiments & Sauces</td>
         </tr>
     
-        <tr>
+        <tr data-category="Canned Foods & Goods" data-percent-change="0.0">
             <td>Member's Mark Premium Chunk Chicken Breast 12.5 oz., 6 ct.</td>
             <td>$11.98 (2024-11-14)</td>
-            <td>$11.98 (2024-11-19)</td>
+            <td>$11.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Canned Foods & Goods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Laundry Detergent" data-percent-change="0.0">
             <td>Member's Mark Liquid Laundry Detergent, Fresh Scent, 127 loads, 196 fl. oz.</td>
             <td>$15.98 (2024-11-14)</td>
-            <td>$15.98 (2024-11-19)</td>
+            <td>$15.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Laundry Detergent</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dish Detergent" data-percent-change="0.0">
             <td>Member's Mark Platinum Clean Automatic Dishwasher Pacs, Fresh Clean, 105 ct.</td>
             <td>$12.98 (2024-11-14)</td>
-            <td>$12.98 (2024-11-19)</td>
+            <td>$12.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dish Detergent</td>
         </tr>
     
-        <tr>
+        <tr data-category="Condiments & Sauces" data-percent-change="0.0">
             <td>Jif Creamy Peanut Butter, 48 oz., 2 pk.</td>
             <td>$10.98 (2024-11-14)</td>
-            <td>$10.98 (2024-11-19)</td>
+            <td>$10.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Condiments & Sauces</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Kraft Grated Parmesan Cheese, 24 oz.</td>
             <td>$6.48 (2024-11-15)</td>
-            <td>$6.48 (2024-11-19)</td>
+            <td>$6.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Kraft Singles American Cheese Slices 3 lbs., 72 ct.</td>
             <td>$9.36 (2024-11-15)</td>
-            <td>$9.36 (2024-11-19)</td>
+            <td>$9.36 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Sliced Colby Jack Cheese, 2 lbs.</td>
             <td>$7.94 (2024-11-15)</td>
-            <td>$7.94 (2024-11-19)</td>
+            <td>$7.94 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark American Cheese 5 lbs., 160 slices</td>
             <td>$17.16 (2024-11-15)</td>
-            <td>$17.16 (2024-11-19)</td>
+            <td>$17.16 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Frigo Cheese Heads String Cheese 1 oz. pkg., 48 ct.</td>
             <td>$9.98 (2024-11-15)</td>
-            <td>$9.98 (2024-11-19)</td>
+            <td>$9.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Colby and Monterey Jack Shredded Cheese 16 oz., 2 pk.</td>
             <td>$7.68 (2024-11-15)</td>
-            <td>$7.68 (2024-11-19)</td>
+            <td>$7.68 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Sharp Cheddar Finely Shredded Cheese 2 pk.</td>
             <td>$8.32 (2024-11-15)</td>
-            <td>$8.32 (2024-11-19)</td>
+            <td>$8.32 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Part-Skim Shredded Mozzarella Cheese 1 lb., 2 pk.</td>
             <td>$7.72 (2024-11-15)</td>
-            <td>$7.72 (2024-11-19)</td>
+            <td>$7.72 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Sliced Mild Cheddar Cheese, 2 lbs.</td>
             <td>$7.17 (2024-11-15)</td>
-            <td>$7.17 (2024-11-19)</td>
+            <td>$7.17 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Athenos Crumbled Traditional Feta Cheese (24 oz.)</td>
             <td>$7.28 (2024-11-15)</td>
-            <td>$7.28 (2024-11-19)</td>
+            <td>$7.28 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>International Delight Caramel Macchiato Liquid Coffee Creamer, 68 fl. oz.</td>
             <td>$3.46 (2024-11-15)</td>
-            <td>$3.46 (2024-11-19)</td>
+            <td>$3.46 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>International Delight French Vanilla Creamer Singles, 192 ct.</td>
             <td>$12.88 (2024-11-15)</td>
-            <td>$12.88 (2024-11-19)</td>
+            <td>$12.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Coffee Mate French Vanilla Coffee Creamer 66 fl. oz.</td>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
+            <td>Coffee Mate French Vanilla Coffee Creamer, 66 fl. oz.</td>
             <td>$5.68 (2024-11-15)</td>
-            <td>$5.68 (2024-11-19)</td>
+            <td>$5.68 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>International Delight Caramel Macchiato Coffee Creamer Singles, 192 ct.</td>
             <td>$12.88 (2024-11-15)</td>
-            <td>$12.88 (2024-11-19)</td>
+            <td>$12.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>International Delight Hazelnut Coffee Creamer Singles, 192 ct.</td>
             <td>$12.88 (2024-11-15)</td>
-            <td>$12.88 (2024-11-19)</td>
+            <td>$12.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Nestle Coffee mate Liquid Creamer Pump, French Vanilla, 50.7 fl. oz.</td>
             <td>$14.98 (2024-11-15)</td>
-            <td>$14.98 (2024-11-19)</td>
+            <td>$14.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Coffee mate Hazelnut Liquid Coffee Creamer 66 fl. oz.</td>
             <td>$5.68 (2024-11-15)</td>
             <td>$5.68 (2024-11-19)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
-            <td>Member's Mark Salted Sweet Cream Butter 4 lbs.</td>
-            <td>$14.48 (2024-11-15)</td>
-            <td>$14.48 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
-        </tr>
-    
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Country Crock Original Spread 5 lbs.</td>
             <td>$7.38 (2024-11-15)</td>
-            <td>$7.38 (2024-11-19)</td>
+            <td>$7.38 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Yoplait Original Lowfat Yogurt Variety Pack, 6 oz., 18 ct.</td>
             <td>$7.98 (2024-11-15)</td>
-            <td>$7.98 (2024-11-19)</td>
+            <td>$7.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Daisy Brand Pure and Natural Sour Cream, 48 oz.</td>
             <td>$5.28 (2024-11-15)</td>
-            <td>$5.28 (2024-11-19)</td>
+            <td>$5.28 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>King's Hawaiian Original Dinner Rolls 32 pk.</td>
             <td>$6.68 (2024-11-15)</td>
-            <td>$6.68 (2024-11-19)</td>
+            <td>$6.68 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Nature's Own Honey Wheat Bread 20 oz., 2 pk.</td>
             <td>$5.77 (2024-11-15)</td>
-            <td>$5.77 (2024-11-19)</td>
+            <td>$5.77 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Member's Mark Sliced Brioche Slider Buns, 24 ct.</td>
             <td>$6.98 (2024-11-15)</td>
-            <td>$6.98 (2024-11-19)</td>
+            <td>$6.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Member's Mark All Butter Sandwich Croissants, 12 ct.</td>
             <td>$5.98 (2024-11-15)</td>
-            <td>$5.98 (2024-11-19)</td>
+            <td>$5.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Sara Lee Original Artesano Bakery Bread 20 oz., 2 pk.</td>
             <td>$4.52 (2024-11-15)</td>
-            <td>$4.52 (2024-11-19)</td>
+            <td>$4.52 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Member's Mark Yeast Dinner Rolls, 24 ct.</td>
             <td>$3.98 (2024-11-15)</td>
-            <td>$3.98 (2024-11-19)</td>
+            <td>$3.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Sara Lee Honey Wheat Bread 20 oz., 2 pk.</td>
             <td>$5.18 (2024-11-15)</td>
-            <td>$5.18 (2024-11-19)</td>
+            <td>$5.18 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Bimbo Soft White Bread Family Pack 20 oz., 2 pk.</td>
             <td>$3.37 (2024-11-15)</td>
-            <td>$3.37 (2024-11-19)</td>
+            <td>$3.37 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Member's Mark Regular Hoagie Rolls, White Bread 12 ct.</td>
             <td>$6.98 (2024-11-15)</td>
-            <td>$6.98 (2024-11-19)</td>
+            <td>$6.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Nature's Own Keto Soft White Bread 16 oz., 2 pk.</td>
             <td>$9.98 (2024-11-15)</td>
-            <td>$9.98 (2024-11-19)</td>
+            <td>$9.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Martin's Potato Long Roll 16 pk.</td>
             <td>$7.12 (2024-11-15)</td>
-            <td>$7.12 (2024-11-19)</td>
+            <td>$7.12 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Nature's Own Hawaiian Sliced Bread 20 oz., 2 pk.</td>
             <td>$5.48 (2024-11-15)</td>
-            <td>$5.48 (2024-11-19)</td>
+            <td>$5.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Sara Lee Artesano Hawaiian Bread, 20 oz., 2 pk.</td>
             <td>$4.58 (2024-11-15)</td>
-            <td>$4.58 (2024-11-19)</td>
+            <td>$4.58 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Nature's Own 100% Whole Wheat Bread 20 oz., 2 pk.</td>
             <td>$5.37 (2024-11-15)</td>
-            <td>$5.37 (2024-11-19)</td>
+            <td>$5.37 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Thomas' Original Nooks & Crannies English Muffins 12 ct.</td>
             <td>$4.98 (2024-11-15)</td>
-            <td>$4.98 (2024-11-19)</td>
+            <td>$4.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Cookies" data-percent-change="0.0">
             <td>Pillsbury Soft Baked Mini Chocolate Chip Cookies, 1.5 oz., 28 pk.</td>
             <td>$11.82 (2024-11-15)</td>
-            <td>$11.82 (2024-11-19)</td>
+            <td>$11.82 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Cookies</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Hostess Donettes Variety Pack Donuts, Snack Size, 1.5 oz., 32 pk.</td>
             <td>$10.98 (2024-11-15)</td>
-            <td>$10.98 (2024-11-19)</td>
+            <td>$10.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Duchess Honey Buns, 3 oz., 12 pk.</td>
             <td>$6.88 (2024-11-15)</td>
-            <td>$6.88 (2024-11-19)</td>
+            <td>$6.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Otis Spunkmeyer Variety Pack Muffins, 4 oz., 15 pk.</td>
             <td>$14.24 (2024-11-15)</td>
-            <td>$14.24 (2024-11-19)</td>
+            <td>$14.24 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Little Debbie Nutty Buddy Bars, 2 oz., 24 pk.</td>
             <td>$8.22 (2024-11-15)</td>
-            <td>$8.22 (2024-11-19)</td>
+            <td>$8.22 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Duchess Mini Powdered Sugar Donuts, 3 oz., 12 pk.</td>
             <td>$7.98 (2024-11-15)</td>
-            <td>$7.98 (2024-11-19)</td>
+            <td>$7.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Hostess Variety Pack Danish, 2.75 oz., 24 ct.</td>
             <td>$15.78 (2024-11-15)</td>
-            <td>$15.78 (2024-11-19)</td>
+            <td>$15.78 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Hostess Twinkies & Cupcakes Variety Pack Snack Cakes, 32 pk.</td>
             <td>$9.88 (2024-11-15)</td>
-            <td>$9.88 (2024-11-19)</td>
+            <td>$9.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Duchess Frosted Donuts, 3 oz., 12 pk.</td>
             <td>$7.98 (2024-11-15)</td>
-            <td>$7.98 (2024-11-19)</td>
+            <td>$7.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Duchess Jumbo Glazed Honey Buns, 5 oz., 12 pk.</td>
             <td>$10.48 (2024-11-15)</td>
-            <td>$10.48 (2024-11-19)</td>
+            <td>$10.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>MoonPie Chocolate Double Decker Pie, 2.75 oz., 24 ct.</td>
             <td>$9.78 (2024-11-15)</td>
-            <td>$9.78 (2024-11-19)</td>
+            <td>$9.78 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Bread & Bakery" data-percent-change="0.0">
             <td>Entenmann's Little Bites Chocolate Chip Muffins, 1.65 oz., 20 pk.</td>
             <td>$10.48 (2024-11-15)</td>
-            <td>$10.48 (2024-11-19)</td>
+            <td>$10.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Bread & Bakery</td>
         </tr>
     
-        <tr>
+        <tr data-category="Snack Cakes" data-percent-change="0.0">
             <td>Entenmann's Little Bites Party Cake Muffins, 1.65 oz., 20 pk.</td>
             <td>$10.48 (2024-11-15)</td>
-            <td>$10.48 (2024-11-19)</td>
+            <td>$10.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Snack Cakes</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Prime Rib Ground Beef Sliders, priced per pound</td>
             <td>$4.98 (2024-11-15)</td>
-            <td>$4.98 (2024-11-19)</td>
+            <td>$4.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Case Sales Meat" data-percent-change="0.0">
             <td>Member's Mark 80% Lean / 20% Fat, Ground Chuck Chub, priced per pound</td>
             <td>$4.28 (2024-11-15)</td>
-            <td>$4.28 (2024-11-19)</td>
+            <td>$4.28 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Case Sales Meat</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Breakfast Foods" data-percent-change="0.0">
             <td>Jimmy Dean Pork Premium Sausage Roll 2 lbs.</td>
             <td>$6.98 (2024-11-15)</td>
             <td>$6.98 (2024-11-19)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Breakfast Foods</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Naturally Hickory Smoked Bacon 3 lbs.</td>
             <td>$12.47 (2024-11-15)</td>
-            <td>$12.47 (2024-11-19)</td>
+            <td>$12.47 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Hormel Black Label, Thick Cut Bacon 3 lbs.</td>
             <td>$11.34 (2024-11-15)</td>
-            <td>$11.34 (2024-11-19)</td>
+            <td>$11.34 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Boneless Skinless Chicken Thighs, priced per pound</td>
             <td>$3.48 (2024-11-15)</td>
-            <td>$3.48 (2024-11-19)</td>
+            <td>$3.48 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark 88% Lean/12% Fat, Ground Beef, priced per pound</td>
             <td>$4.58 (2024-11-15)</td>
-            <td>$4.58 (2024-11-19)</td>
+            <td>$4.58 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Hillshire Farm Beef Smoked Sausage Bundle Pack 48 oz.</td>
             <td>$11.28 (2024-11-15)</td>
-            <td>$11.28 (2024-11-19)</td>
+            <td>$11.28 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Godshall's Uncured Turkey Bacon 40 oz.</td>
             <td>$10.86 (2024-11-15)</td>
-            <td>$10.86 (2024-11-19)</td>
+            <td>$10.86 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Hillshire Farm Lit'l Smokies Smoked Sausage (48 oz.)</td>
             <td>$8.98 (2024-11-15)</td>
             <td>$8.98 (2024-11-19)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Wild Caught Snow Crab Legs and Claws, Frozen, 2 lbs.</td>
             <td>$21.98 (2024-11-15)</td>
-            <td>$21.98 (2024-11-19)</td>
+            <td>$21.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Entrees" data-percent-change="0.0">
             <td>Smucker's Uncrustables Sandwiches, Grape, Frozen, 50.4 oz., 18 ct.</td>
             <td>$13.98 (2024-11-15)</td>
-            <td>$13.98 (2024-11-19)</td>
+            <td>$13.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Entrees</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Tyson Fully Cooked Crispy Chicken Strips, Frozen, 3.5 lbs.</td>
             <td>$14.98 (2024-11-15)</td>
-            <td>$14.98 (2024-11-19)</td>
+            <td>$14.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Entrees" data-percent-change="0.0">
             <td>Hot Pockets Pepperoni Pizza Sandwiches, Frozen, 20 ct.</td>
             <td>$15.88 (2024-11-15)</td>
-            <td>$15.88 (2024-11-19)</td>
+            <td>$15.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Entrees</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Tyson Bone-In Buffalo Style Hot Chicken Wings, Frozen, 4 lbs.</td>
             <td>$18.98 (2024-11-15)</td>
-            <td>$18.98 (2024-11-19)</td>
+            <td>$18.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Entrees" data-percent-change="0.0">
             <td>Smucker's Uncrustables Peanut Butter and Strawberry Jam Sandwiches, 50.4 oz., 18 pk.</td>
             <td>$13.98 (2024-11-15)</td>
-            <td>$13.98 (2024-11-19)</td>
+            <td>$13.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Entrees</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Appetizers & Snacks" data-percent-change="0.0">
             <td>Member's Mark Southern Style Waffle Fries, Frozen, 4 lbs.</td>
             <td>$6.98 (2024-11-15)</td>
-            <td>$6.98 (2024-11-19)</td>
+            <td>$6.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Appetizers & Snacks</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Gorton’s Super Crunchy Fish Sticks, Frozen, 64 ct.</td>
             <td>$13.86 (2024-11-15)</td>
-            <td>$13.86 (2024-11-19)</td>
+            <td>$13.86 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Hot Dogs & Franks" data-percent-change="0.0">
             <td>Member's Mark Beef Franks, 1/4 lb., 12 ct.</td>
             <td>$10.84 (2024-11-15)</td>
-            <td>$10.84 (2024-11-19)</td>
+            <td>$10.84 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Hot Dogs & Franks</td>
         </tr>
     
-        <tr>
+        <tr data-category="Hot Dogs & Franks" data-percent-change="0.0">
             <td>Member's Mark Cheddar Cheese Pork Franks, 12 ct.</td>
             <td>$8.64 (2024-11-15)</td>
-            <td>$8.64 (2024-11-19)</td>
+            <td>$8.64 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Hot Dogs & Franks</td>
         </tr>
     
-        <tr>
-            <td>Member's Mark Lactose Free 2% Reduced Fat Milk, 64 fl. oz., 3 pk.</td>
-            <td>$9.64 (2024-11-15)</td>
-            <td>$9.64 (2024-11-19)</td>
-            <td>0.00%</td>
-            <td>$0.00</td>
-        </tr>
-    
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Silk Unsweetened Original Almond Milk half gallon, 3 pk.</td>
             <td>$7.88 (2024-11-15)</td>
-            <td>$7.88 (2024-11-19)</td>
+            <td>$7.88 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
             <td>Member's Mark Unsweetened Vanilla Almond Milk, 64 oz., 2 pk.</td>
             <td>$5.38 (2024-11-15)</td>
-            <td>$5.38 (2024-11-19)</td>
+            <td>$5.38 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
         </tr>
     
-        <tr>
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Boneless Skinless Chicken Breasts, priced per pound</td>
             <td>$2.68 (2024-11-16)</td>
-            <td>$2.68 (2024-11-19)</td>
+            <td>$2.68 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
-        <tr>
+        <tr data-category="Frozen Meat, Poultry & Seafood" data-percent-change="0.0">
             <td>Member's Mark Honey Barbecue Boneless Chicken Bites 3.5 lbs.</td>
             <td>$12.98 (2024-11-16)</td>
-            <td>$12.98 (2024-11-19)</td>
+            <td>$12.98 (2024-11-21)</td>
             <td>0.00%</td>
             <td>$0.00</td>
+            <td>Frozen Meat, Poultry & Seafood</td>
+        </tr>
+    
+        <tr data-category="Dairy, Eggs, & Cheese" data-percent-change="0.0">
+            <td>Nestle Coffee Mate Hazelnut Liquid Coffee Creamer, 66 fl. oz.</td>
+            <td>$5.68 (2024-11-21)</td>
+            <td>$5.68 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Dairy, Eggs, & Cheese</td>
+        </tr>
+    
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
+            <td>Jimmy Dean Premium Pork Sausage Roll, 2 lbs.</td>
+            <td>$6.98 (2024-11-21)</td>
+            <td>$6.98 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
+        </tr>
+    
+        <tr data-category="Meat, Poultry & Seafood" data-percent-change="0.0">
+            <td>Hillshire Farm Lit'l Smokies Smoked Sausage, 3 lbs.</td>
+            <td>$8.98 (2024-11-21)</td>
+            <td>$8.98 (2024-11-21)</td>
+            <td>0.00%</td>
+            <td>$0.00</td>
+            <td>Meat, Poultry & Seafood</td>
         </tr>
     
         </tbody>
