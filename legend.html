@@ -9,6 +9,9 @@
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background-color: #f4f4f4; }
+        @media (max-width: 768px) {
+            .dropdown-container { display: none; }
+        }
     </style>
     <script>
         function filterByCategory() {
@@ -36,11 +39,13 @@
 </head>
 <body>
     <h1>Product Details</h1>
-    <label for="categoryFilter">Filter by Category:</label>
-    <select id="categoryFilter" onchange="filterByCategory()">
-        <option value="All">All</option>
+    <div class="dropdown-container">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" onchange="filterByCategory()">
+            <option value="All">All</option>
 <option value="Dairy, Eggs, & Cheese">Dairy, Eggs, & Cheese</option><option value="Condiments & Sauces">Condiments & Sauces</option><option value="Powdered & Liquid Drink Mixes">Powdered & Liquid Drink Mixes</option><option value="Cereal & Breakfast Foods">Cereal & Breakfast Foods</option><option value="Frozen Breakfast Foods">Frozen Breakfast Foods</option><option value="Frozen Meat, Poultry & Seafood">Frozen Meat, Poultry & Seafood</option><option value="Lunch Meat">Lunch Meat</option><option value="Hot Dogs & Franks">Hot Dogs & Franks</option><option value="Soda">Soda</option><option value="Paper Towels">Paper Towels</option><option value="Trash Bags">Trash Bags</option><option value="Uncategorized">Uncategorized</option><option value="Facial Tissue">Facial Tissue</option><option value="Canned Foods & Goods">Canned Foods & Goods</option><option value="Laundry Detergent">Laundry Detergent</option><option value="Dish Detergent">Dish Detergent</option><option value="Bread & Bakery">Bread & Bakery</option><option value="Cookies">Cookies</option><option value="Snack Cakes">Snack Cakes</option><option value="Meat, Poultry & Seafood">Meat, Poultry & Seafood</option><option value="Case Sales Meat">Case Sales Meat</option><option value="Frozen Entrees">Frozen Entrees</option><option value="Frozen Appetizers & Snacks">Frozen Appetizers & Snacks</option>
-    </select>
+        </select>
+    </div>
     <table>
         <thead>
             <tr>
